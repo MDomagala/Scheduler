@@ -22,7 +22,7 @@ Scheduler::Scheduler(boost::asio::io_service& service) : actualJob(nullptr), job
 Scheduler::~Scheduler() {}
 
 void Scheduler::schedule(Job* job) {
-	insert(jobs.popFirst());
+	insert(job);
 }
 
 void Scheduler::schedule(const std::chrono::system_clock::time_point& tp, function<void (void)> f) {
