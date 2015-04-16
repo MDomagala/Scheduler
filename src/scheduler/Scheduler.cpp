@@ -68,14 +68,11 @@ void Scheduler::loop(const boost::system::error_code& ec) {
 	if (actualJob) {
 		actualJob->callback();
 		delete actualJob;
-		if(jobs.getSize()) {
-			actualJob = jobs.popFirst();
-			timer->expires_at(actualJob->getTimePoint());
-		} else {
-			return;
-		}
 	}
-	timer->async_wait(boost::bind(&Scheduler::loop, this, _1));
+	if(jobs.getSize()) {
+		actualJob = jobs.popFirst();
+		start();
+	}
 }
 
 } /* namespace scheduler */
