@@ -15,7 +15,7 @@ Job::Job(const asio::system_timer::time_point& tp, function<void (void)> f) : fu
 Job::~Job() {}
 
 Job* Job::ORDER(Job* j1, Job* j2) {
-	return j1->getTimePoint() >= j2->getTimePoint() ? j1 : j2;
+	return j1->getTimePoint() >= j2->getTimePoint() ? j2 : j1;
 }
 
 void Job::callback() {

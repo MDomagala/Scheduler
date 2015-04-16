@@ -42,7 +42,7 @@ void Scheduler::insert(Job* job) {
 		actualJob = job;
 		start();
 	} else {
-		if(Job::ORDER(actualJob, job) == actualJob) {
+		if(Job::ORDER(actualJob, job) == job) {
 			jobs.add(actualJob);
 			actualJob = job;
 			timer->cancel();
